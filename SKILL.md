@@ -1,6 +1,6 @@
 ---
 name: us-stock-analyzer
-description: Analyze US stocks and US market conditions for trading research, watchlists, earnings/news review, technical levels, risk controls, and post-market or pre-market summaries. Use when the user asks about US-listed stocks, ETFs, sectors, Nasdaq/NYSE/AMEX tickers, SPY/QQQ/IWM/DIA, or the US market; do not use for A-shares, Hong Kong stocks, crypto, forex, or non-US markets unless the user explicitly asks for a high-level comparison.
+description: Analyze US stocks and US market conditions for trading research, watchlists, earnings/news review, technical levels, risk controls, scheduled local reports, and Discord/Slack/email delivery. Use when the user asks about US-listed stocks, ETFs, sectors, Nasdaq/NYSE/AMEX tickers, SPY/QQQ/IWM/DIA, US market summaries, local scheduled stock reports, or pushing US stock reports to Discord, Slack, or email; do not use for A-shares, Hong Kong stocks, crypto, forex, or non-US markets unless the user explicitly asks for a high-level comparison.
 ---
 
 # US Stock Analyzer
@@ -69,6 +69,14 @@ For a US market review, cover:
 - If live data is unavailable, say so clearly and base the answer only on provided data or stable reasoning.
 - Use Eastern Time for US market timing unless the user requests another timezone.
 - Mention whether the market is pre-market, regular session, after-hours, weekend, or holiday when timing matters.
+
+## Automation And Delivery
+
+When the user asks for local scheduled reports or Discord/Slack/email delivery, read [automation-and-delivery.md](references/automation-and-delivery.md).
+
+- Keep secrets out of the repository. Use environment variables or untracked local config files.
+- Prefer local scheduled tasks for recurring runs on the user's own machine.
+- Send only the final report unless the user asks for raw data or logs.
 
 ## Style
 

@@ -7,6 +7,7 @@
 - 只支持美股、美国 ETF、ADR 和主要美股指数代理。
 - 暂不考虑 A 股、港股、加密货币、外汇、期货和其他市场。
 - 只整理 Codex 与 Claude 两套使用入口。
+- 可选支持本地 Windows 定时任务，以及 Discord、Slack、邮件推送。
 - 输出重点放在交易研究、盘前/盘后复盘、观察清单、催化剂、技术位和风险控制。
 
 ## 文件结构
@@ -18,7 +19,12 @@ us-stock-analyzer/
 ├── README.md             # 项目说明
 ├── agents/
 │   └── openai.yaml       # Codex UI 展示信息
+├── scripts/
+│   ├── config.example.json
+│   ├── install-windows-scheduled-task.ps1
+│   └── run-and-notify.ps1
 └── references/
+    ├── automation-and-delivery.md
     └── us-market-checklist.md
 ```
 
@@ -57,3 +63,34 @@ Copy-Item -Recurse E:\AIRelated\us-stock-analyzer C:\Users\Administrator\.codex\
 这个 skill 不直接内置行情 API。使用时应由 Codex 或 Claude 根据当前环境调用可用的数据来源，例如网页、行情工具、用户上传的数据、券商导出文件或手动提供的价格信息。
 
 如果没有实时数据，应明确说明数据不可用，并只基于用户提供的信息或稳定的分析框架输出。
+
+## 本地定时任务与推送
+
+复制配置模板：
+
+```powershell
+Copy-Item E:\AIRelated\us-stock-analyzer\scripts\config.example.json E:\AIRelated\us-stock-analyzer\config.local.json
+```
+
+然后在 `config.local.json` 里设置本地运行命令，例如 Codex CLI、Claude CLI、你自己的行情脚本，或任何能输出 Markdown 文本的命令。
+
+推送密钥建议放到环境变量：
+
+```powershell
+[Environment]::SetEnvironmentVariable("US_STOCK_DISCORD_WEBHOOK_URL", "你的 Discord webhook", "User")
+[Environment]::SetEnvironmentVariable("US_STOCK_SLACK_WEBHOOK_URL", "你的 Slack webhook", "User")
+```
+
+测试运行：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File E:\AIRelated\us-stock-analyzer\scripts\run-and-notify.ps1 -Config E:\AIRelated\us-stock-analyzer\config.local.json
+```
+
+安装 Windows 定时任务：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File E:\AIRelated\us-stock-analyzer\scripts\install-windows-scheduled-task.ps1 -Config E:\AIRelated\us-stock-analyzer\config.local.json
+```
+
+`config.local.json`、webhook 和邮箱密码不要提交到 Git。

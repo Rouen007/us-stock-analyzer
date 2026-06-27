@@ -16,6 +16,15 @@ Use these instructions when Claude is asked to analyze US stocks or the US marke
 4. Analyze trend, catalyst, levels, risk, and scenarios.
 5. Finish with a watch plan and invalidation conditions.
 
+## Automation And Delivery
+
+This project includes optional local automation support:
+
+- Use `scripts/config.example.json` as the template for local settings.
+- Use `scripts/run-and-notify.ps1` to run a report command and send its output.
+- Use `scripts/install-windows-scheduled-task.ps1` to register a Windows scheduled task.
+- Keep Discord/Slack webhooks and email credentials in environment variables or an untracked local config file.
+
 ## Preferred Structure
 
 For one ticker:
