@@ -6,7 +6,7 @@ Use this reference when producing a daily stock analysis with market breadth, se
 
 - Clearly separate daily (日) and weekly (周) changes. Every number must be labelled with its time frame: "日跌 0.1%" vs "周跌 2%".
 - Use exact values (index level, percentage to at least one decimal). Never use vague terms like "+大幅", "-显著". If precise data is unavailable, state "数据未获取" and omit the entry rather than guessing.
-- Top 10 Gainers/Losers must come from verified data (API, screener, or confirmed source). Do not fabricate entries or mix different dates.
+- Top 10 Gainers/Losers must come from the previous trading day's verified close data (API, screener, or confirmed source). The report always covers the most recent completed trading session. Do not fabricate entries or mix different dates.
 - Do not put a ticker in Losers if it was actually up on that day, and vice versa.
 
 ## Required Sections

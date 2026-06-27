@@ -62,7 +62,7 @@ For a US market review, cover:
 - Macro overlay (all with exact values): DXY level and daily change, 10-year nominal yield, 2-year nominal yield, 10-year real yield/TIPS, breakeven inflation when relevant, VIX, COR1M/1-month implied correlation, oil (Brent or WTI).
 - Breadth and structure: what is leading vs dragging, advance/decline, whether pressure is broad or concentrated in mega-cap weights.
 - Sector rotation: top/bottom sector ranking, breadth, standard deviation/dispersion, leading and dragging tickers, and whether strength is broadening or concentrated.
-- Top 10 gainers/losers: only include with verified data (API, screener, or confirmed source). Use exact daily percent change. Never fabricate entries or mix different dates. If data is unavailable, state "数据未获取" instead of guessing.
+- Top 10 gainers/losers: use the previous trading day's verified close data (API, screener, or confirmed source). Use exact daily percent change. Never fabricate entries or mix different dates. If data is unavailable for a specific ticker, omit that entry rather than guessing. The report always covers the most recent completed trading session.
 - Watch plan for next session: key levels, macro filter signals, style/factor rotation signals, confirm/invalidate conditions.
 - Event calendar: earnings, CPI/PCE/jobs/FOMC, large options expiry when relevant.
 
