@@ -21,7 +21,7 @@ function Split-Message {
     [int]$MaxLength
   )
   $items = New-Object System.Collections.Generic.List[string]
-  if ([string]::IsNullOrWhiteSpace($Text)) { return @("") }
+  if ([string]::IsNullOrWhiteSpace($Text)) { return @"") }
   for ($i = 0; $i -lt $Text.Length; $i += $MaxLength) {
     $len = [Math]::Min($MaxLength, $Text.Length - $i)
     $items.Add($Text.Substring($i, $len))
@@ -143,6 +143,13 @@ if ([string]::IsNullOrWhiteSpace($Message)) {
 
 if ([string]::IsNullOrWhiteSpace($Message)) {
   $Message = "US Stock Analyzer produced an empty report."
+}
+
+if (-not [string]::IsNullOrWhiteSpace($configObject.reportFooter)) {
+  $footer = [string]$configObject.reportFooter
+  if (-not $Message.TrimEnd().EndsWith($footer)) {
+    $Message = $Message.TrimEnd() + "`n`n" + $footer
+  }
 }
 
 $delivery = $configObject.delivery
