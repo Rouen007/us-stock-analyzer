@@ -21,7 +21,7 @@ function Split-Message {
     [int]$MaxLength
   )
   $items = New-Object System.Collections.Generic.List[string]
-  if ([string]::IsNullOrWhiteSpace($Text)) { return @"") }
+  if ([string]::IsNullOrWhiteSpace($Text)) { return @("") }
   for ($i = 0; $i -lt $Text.Length; $i += $MaxLength) {
     $len = [Math]::Min($MaxLength, $Text.Length - $i)
     $items.Add($Text.Substring($i, $len))
