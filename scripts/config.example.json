@@ -1,0 +1,39 @@
+{
+  "schedule": {
+    "taskName": "US Stock Analyzer Daily Review",
+    "time": "16:15",
+    "daysOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+  },
+  "runner": {
+    "workingDirectory": "E:\\AIRelated\\us-stock-analyzer",
+    "command": "powershell",
+    "arguments": [
+      "-NoProfile",
+      "-Command",
+      "Write-Output 'Replace runner.command and runner.arguments with your Codex, Claude, or market analysis command.'"
+    ]
+  },
+  "delivery": {
+    "discord": {
+      "enabled": false,
+      "mode": "webhook",
+      "webhookUrlEnv": "US_STOCK_DISCORD_WEBHOOK_URL",
+      "channelId": "",
+      "cdp": "http://127.0.0.1:9222"
+    },
+    "slack": {
+      "enabled": false,
+      "webhookUrlEnv": "US_STOCK_SLACK_WEBHOOK_URL"
+    },
+    "email": {
+      "enabled": false,
+      "smtpServerEnv": "US_STOCK_SMTP_SERVER",
+      "smtpPortEnv": "US_STOCK_SMTP_PORT",
+      "usernameEnv": "US_STOCK_SMTP_USERNAME",
+      "passwordEnv": "US_STOCK_SMTP_PASSWORD",
+      "fromEnv": "US_STOCK_EMAIL_FROM",
+      "toEnv": "US_STOCK_EMAIL_TO",
+      "useSsl": true
+    }
+  }
+}
