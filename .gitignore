@@ -8,3 +8,4 @@ config.local.json
 *.local.json
 reports/
 .discord-test-message.txt
+node_modules/
