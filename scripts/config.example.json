@@ -13,6 +13,7 @@
       "Write-Output 'Replace runner.command and runner.arguments with your Codex, Claude, or market analysis command.'"
     ]
   },
+  "reportFooter": "from [Rouen007/us-stock-analyzer](https://github.com/Rouen007/us-stock-analyzer)",
   "delivery": {
     "discord": {
       "enabled": false,
