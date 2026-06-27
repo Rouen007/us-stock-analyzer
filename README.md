@@ -22,6 +22,9 @@ us-stock-analyzer/
 │   ├── config.example.json
 │   ├── install-windows-scheduled-task.ps1
 │   └── run-and-notify.ps1
+├── web/
+│   ├── server.js
+│   └── public/
 └── references/
     ├── automation-and-delivery.md
     └── us-market-checklist.md
@@ -121,6 +124,30 @@ https://discord.com/channels/<guild_id>/<channel_id>
   "cdp": "http://127.0.0.1:9222"
 }
 ```
+
+## 本地网页界面
+
+本项目带一个轻量 JS GUI，不需要安装前端依赖。
+
+启动：
+
+```powershell
+cd E:\AIRelated\us-stock-analyzer
+npm start
+```
+
+打开：
+
+```text
+http://127.0.0.1:8787
+```
+
+页面支持：
+
+- 编辑日报内容
+- 预览 Markdown 文本
+- 点击按钮调用 `scripts/run-and-notify.ps1`
+- 使用当前 `config.local.json` 推送到已配置的 Discord / Slack / 邮件目标
 
 ## 参考来源
 
