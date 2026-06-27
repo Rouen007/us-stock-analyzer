@@ -145,6 +145,13 @@ if ([string]::IsNullOrWhiteSpace($Message)) {
   $Message = "US Stock Analyzer produced an empty report."
 }
 
+if (-not [string]::IsNullOrWhiteSpace($configObject.reportFooter)) {
+  $footer = [string]$configObject.reportFooter
+  if (-not $Message.TrimEnd().EndsWith($footer)) {
+    $Message = $Message.TrimEnd() + "`n`n" + $footer
+  }
+}
+
 $delivery = $configObject.delivery
 if ($delivery.discord.enabled) {
   $mode = if ([string]::IsNullOrWhiteSpace($delivery.discord.mode)) { "webhook" } else { $delivery.discord.mode }

@@ -9,6 +9,7 @@
 - 只整理 Codex 与 Claude 两套使用入口。
 - 可选支持本地 Windows 定时任务，以及 Discord、Slack、邮件推送。
 - 输出重点放在交易研究、盘前/盘后复盘、观察清单、催化剂、技术位和风险控制。
+- 市场复盘会关注 DXY、10 年期实际利率/TIPS、通胀预期、VIX、COR1M 等宏观和相关性指标。
 
 ## 文件结构
 
@@ -99,6 +100,12 @@ powershell -ExecutionPolicy Bypass -File E:\AIRelated\us-stock-analyzer\scripts\
 ```
 
 `config.local.json`、webhook 和邮箱密码不要提交到 Git。
+
+`reportFooter` 会自动追加到每次推送的报告末尾，默认是本仓库地址：
+
+```json
+"reportFooter": "from [Rouen007/us-stock-analyzer](https://github.com/Rouen007/us-stock-analyzer)"
+```
 
 如果使用频道链接，比如：
 

@@ -58,8 +58,8 @@ For multiple tickers, use a compact table:
 For a US market review, cover:
 
 - Index posture: SPY, QQQ, IWM, DIA.
-- Breadth and leadership: sectors, mega-cap concentration, risk-on/risk-off tone.
-- Macro drivers: rates, dollar, oil, yields, Fed expectations, major data.
+- Breadth and leadership: sectors, mega-cap concentration, risk-on/risk-off tone, VIX, and COR1M/1-month implied correlation.
+- Macro drivers: DXY/US dollar, 2-year and 10-year nominal yields, 10-year real yield/TIPS, breakeven inflation, oil, Fed expectations, and major data.
 - Event calendar: earnings, CPI/PCE/jobs/FOMC, large options expiry when relevant.
 - Trading posture: aggressive, selective, defensive, or wait-and-see.
 
