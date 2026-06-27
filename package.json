@@ -1,0 +1,11 @@
+{
+  "name": "us-stock-analyzer",
+  "version": "0.1.0",
+  "private": false,
+  "description": "US stock analyzer skill with local automation and a small web UI.",
+  "scripts": {
+    "start": "node web/server.js",
+    "web": "node web/server.js"
+  },
+  "license": "MIT"
+}
