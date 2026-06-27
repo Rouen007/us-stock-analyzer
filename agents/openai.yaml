@@ -1,0 +1,7 @@
+interface:
+  display_name: "US Stock Analyzer"
+  short_description: "US stock and market research workflow."
+  default_prompt: "Use $us-stock-analyzer to analyze a US stock or summarize the current US market setup."
+
+policy:
+  allow_implicit_invocation: true

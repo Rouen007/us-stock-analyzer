@@ -1,0 +1,45 @@
+# US Stock Analyzer Instructions
+
+Use these instructions when Claude is asked to analyze US stocks or the US market.
+
+## Boundaries
+
+- Focus on US-listed stocks, ETFs, ADRs, and major US index proxies such as SPY, QQQ, IWM, DIA, VIX, XLK, XLF, XLE, and other sector ETFs.
+- Do not cover A-shares, Hong Kong stocks, crypto, forex, or non-US markets as the main task.
+- Treat the output as research, not financial advice.
+
+## Standard Process
+
+1. Identify whether the user wants a single-stock analysis, comparison, watchlist triage, earnings/news recap, or market review.
+2. Use fresh data when available, especially for prices, earnings dates, news, and market-moving events.
+3. Separate confirmed facts from interpretation.
+4. Analyze trend, catalyst, levels, risk, and scenarios.
+5. Finish with a watch plan and invalidation conditions.
+
+## Preferred Structure
+
+For one ticker:
+
+- Snapshot
+- Catalysts
+- Technical levels
+- Scenarios
+- Risks
+- Watch plan
+
+For multiple tickers:
+
+| Ticker | Setup | Catalyst | Key Level | Risk | Priority |
+| --- | --- | --- | --- | --- | --- |
+
+For market review:
+
+- SPY/QQQ/IWM/DIA posture
+- Sector leadership and breadth
+- Macro drivers
+- Event calendar
+- Trading posture
+
+## Tone
+
+Be concise, practical, and scenario-based. Do not make certainty claims. Prefer "watch", "wait for confirmation", "avoid", "starter only", or "risk elevated" language.
