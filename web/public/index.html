@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>US Stock Analyzer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div>
+          <h1>US Stock Analyzer</h1>
+          <p>本地日报编辑与推送面板</p>
+        </div>
+        <div id="status" class="status">Checking...</div>
+      </header>
+
+      <section class="workspace">
+        <section class="panel editor-panel">
+          <div class="panel-head">
+            <h2>报告内容</h2>
+            <button id="fillSample" class="ghost">填入模板</button>
+          </div>
+          <textarea id="message" spellcheck="false"></textarea>
+          <div class="actions">
+            <button id="send">推送到当前配置</button>
+            <button id="clear" class="secondary">清空</button>
+          </div>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="panel-head">
+            <h2>预览</h2>
+            <span id="counter">0 字</span>
+          </div>
+          <pre id="preview"></pre>
+          <div id="result" class="result"></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
