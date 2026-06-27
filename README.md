@@ -1,8 +1,6 @@
-# US Stock Analyzer
+﻿# US Stock Analyzer
 
 一个只关注美股的股票分析 skill，面向 Codex 和 Claude 使用。
-
-本项目参考了 [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) 的 skill 思路，但范围做了收窄和重写：
 
 - 只支持美股、美国 ETF、ADR 和主要美股指数代理。
 - 暂不考虑 A 股、港股、加密货币、外汇、期货和其他市场。
@@ -123,5 +121,9 @@ https://discord.com/channels/<guild_id>/<channel_id>
   "cdp": "http://127.0.0.1:9222"
 }
 ```
+
+## 参考来源
+
+本项目参考了 [ZhuLinsen/daily_stock_analysis](https://github.com/ZhuLinsen/daily_stock_analysis) 的 skill 思路，但范围做了收窄和重写。
 
 from [Rouen007/us-stock-analyzer](https://github.com/Rouen007/us-stock-analyzer)
