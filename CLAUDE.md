@@ -23,6 +23,7 @@ This project includes optional local automation support:
 - Use `scripts/config.example.json` as the template for local settings.
 - Use `scripts/run-and-notify.ps1` to run a report command and send its output.
 - Use `scripts/install-windows-scheduled-task.ps1` to register a Windows scheduled task.
+- For Discord, prefer webhook mode for recurring tasks; use `chrome-session` mode only when the user wants to post through an already logged-in local Chrome/Discord session.
 - Keep Discord/Slack webhooks and email credentials in environment variables or an untracked local config file.
 
 ## Preferred Structure

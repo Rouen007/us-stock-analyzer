@@ -7,3 +7,4 @@ Thumbs.db
 config.local.json
 *.local.json
 reports/
+.discord-test-message.txt

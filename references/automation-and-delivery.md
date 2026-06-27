@@ -6,6 +6,7 @@ Use this reference when the user wants local scheduled US stock reports or deliv
 
 - Local Windows scheduled task.
 - Discord webhook.
+- Discord channel through an already logged-in Chrome session.
 - Slack incoming webhook.
 - Email through SMTP settings available to Windows PowerShell.
 
@@ -35,5 +36,6 @@ Use this reference when the user wants local scheduled US stock reports or deliv
 ## Delivery Notes
 
 - Discord and Slack webhooks are the simplest and most reliable push targets.
+- Discord `chrome-session` mode can post to a channel ID using the user's logged-in Chrome session. Use it for local personal workflows only. It requires Chrome DevTools on port `9222` and an open logged-in Discord tab.
 - Email requires SMTP host, port, username, password, from, and to fields. Prefer an app password or dedicated token.
 - If the generated report is long, the runner may split messages. Discord has practical message length limits; Slack also benefits from shorter blocks.

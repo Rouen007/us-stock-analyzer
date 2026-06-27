@@ -74,6 +74,11 @@ Copy-Item E:\AIRelated\us-stock-analyzer\scripts\config.example.json E:\AIRelate
 
 然后在 `config.local.json` 里设置本地运行命令，例如 Codex CLI、Claude CLI、你自己的行情脚本，或任何能输出 Markdown 文本的命令。
 
+Discord 有两种方式：
+
+- `webhook`: 长期定时任务推荐，最稳定，需要 Discord webhook URL。
+- `chrome-session`: 使用你本机已登录的 Chrome/Discord 会话，适合先推送到某个频道测试。需要 Chrome 开着，并且 DevTools 端口是 `9222`。
+
 推送密钥建议放到环境变量：
 
 ```powershell
@@ -94,3 +99,20 @@ powershell -ExecutionPolicy Bypass -File E:\AIRelated\us-stock-analyzer\scripts\
 ```
 
 `config.local.json`、webhook 和邮箱密码不要提交到 Git。
+
+如果使用频道链接，比如：
+
+```text
+https://discord.com/channels/1368789928590180383/1368789928590180386
+```
+
+则 `channelId` 是最后一段：
+
+```json
+"discord": {
+  "enabled": true,
+  "mode": "chrome-session",
+  "channelId": "1368789928590180386",
+  "cdp": "http://127.0.0.1:9222"
+}
+```

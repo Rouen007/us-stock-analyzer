@@ -37,6 +37,37 @@ function Send-Discord {
   }
 }
 
+function Send-DiscordViaChrome {
+  param($DiscordConfig, [string]$Text)
+  $channelId = $DiscordConfig.channelId
+  if ([string]::IsNullOrWhiteSpace($channelId)) {
+    throw "Discord chrome-session delivery is enabled, but delivery.discord.channelId is missing."
+  }
+  if ($channelId -notmatch '^\d{17,20}$') {
+    throw "delivery.discord.channelId must be a numeric Discord channel ID."
+  }
+
+  $scriptPath = Join-Path $PSScriptRoot "discord-send-via-chrome.js"
+  if (-not (Test-Path -LiteralPath $scriptPath)) {
+    throw "Discord Chrome sender script not found: $scriptPath"
+  }
+
+  $tempFile = Join-Path ([System.IO.Path]::GetTempPath()) ("us-stock-analyzer-discord-" + [guid]::NewGuid().ToString("N") + ".txt")
+  try {
+    foreach ($part in (Split-Message -Text $Text -MaxLength 1800)) {
+      Set-Content -LiteralPath $tempFile -Encoding UTF8 -Value $part
+      $cdp = if ([string]::IsNullOrWhiteSpace($DiscordConfig.cdp)) { "http://127.0.0.1:9222" } else { $DiscordConfig.cdp }
+      $output = node $scriptPath $channelId $tempFile $cdp 2>&1
+      $exitCode = if ($LASTEXITCODE -ne $null) { $LASTEXITCODE } else { 0 }
+      if ($exitCode -ne 0) {
+        throw "Discord Chrome delivery failed: $($output | Out-String)"
+      }
+    }
+  } finally {
+    Remove-Item -LiteralPath $tempFile -Force -ErrorAction SilentlyContinue
+  }
+}
+
 function Send-Slack {
   param([string]$WebhookUrl, [string]$Text)
   foreach ($part in (Split-Message -Text $Text -MaxLength 3500)) {
@@ -116,9 +147,16 @@ if ([string]::IsNullOrWhiteSpace($Message)) {
 
 $delivery = $configObject.delivery
 if ($delivery.discord.enabled) {
-  $url = Get-EnvValue $delivery.discord.webhookUrlEnv
-  if ([string]::IsNullOrWhiteSpace($url)) { throw "Discord delivery is enabled, but webhook environment variable is missing." }
-  Send-Discord -WebhookUrl $url -Text $Message
+  $mode = if ([string]::IsNullOrWhiteSpace($delivery.discord.mode)) { "webhook" } else { $delivery.discord.mode }
+  if ($mode -eq "webhook") {
+    $url = Get-EnvValue $delivery.discord.webhookUrlEnv
+    if ([string]::IsNullOrWhiteSpace($url)) { throw "Discord webhook delivery is enabled, but webhook environment variable is missing." }
+    Send-Discord -WebhookUrl $url -Text $Message
+  } elseif ($mode -eq "chrome-session") {
+    Send-DiscordViaChrome -DiscordConfig $delivery.discord -Text $Message
+  } else {
+    throw "Unsupported Discord delivery mode: $mode"
+  }
 }
 
 if ($delivery.slack.enabled) {

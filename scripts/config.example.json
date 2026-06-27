@@ -16,7 +16,10 @@
   "delivery": {
     "discord": {
       "enabled": false,
-      "webhookUrlEnv": "US_STOCK_DISCORD_WEBHOOK_URL"
+      "mode": "webhook",
+      "webhookUrlEnv": "US_STOCK_DISCORD_WEBHOOK_URL",
+      "channelId": "",
+      "cdp": "http://127.0.0.1:9222"
     },
     "slack": {
       "enabled": false,
