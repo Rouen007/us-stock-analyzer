@@ -103,7 +103,7 @@ powershell -ExecutionPolicy Bypass -File E:\AIRelated\us-stock-analyzer\scripts\
 如果使用频道链接，比如：
 
 ```text
-https://discord.com/channels/1368789928590180383/1368789928590180386
+https://discord.com/channels/<guild_id>/<channel_id>
 ```
 
 则 `channelId` 是最后一段：
@@ -112,7 +112,9 @@ https://discord.com/channels/1368789928590180383/1368789928590180386
 "discord": {
   "enabled": true,
   "mode": "chrome-session",
-  "channelId": "1368789928590180386",
+  "channelId": "<channel_id>",
   "cdp": "http://127.0.0.1:9222"
 }
 ```
+
+from [Rouen007/us-stock-analyzer](https://github.com/Rouen007/us-stock-analyzer)
