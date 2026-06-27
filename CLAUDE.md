@@ -13,7 +13,7 @@ Use these instructions when Claude is asked to analyze US stocks or the US marke
 1. Identify whether the user wants a single-stock analysis, comparison, watchlist triage, earnings/news recap, or market review.
 2. Use fresh data when available, especially for prices, earnings dates, news, and market-moving events.
 3. Separate confirmed facts from interpretation.
-4. Analyze trend, catalyst, levels, risk, and scenarios.
+4. Analyze trend, catalyst, levels, risk, and scenarios. For market reviews, include DXY, nominal Treasury yields, 10-year real yield/TIPS, breakeven inflation, VIX, and COR1M/1-month implied correlation when they are relevant.
 5. Finish with a watch plan and invalidation conditions.
 
 ## Automation And Delivery
