@@ -1,4 +1,4 @@
-const messageEl = document.querySelector("#message");
+﻿const messageEl = document.querySelector("#message");
 const previewEl = document.querySelector("#preview");
 const counterEl = document.querySelector("#counter");
 const resultEl = document.querySelector("#result");
@@ -9,24 +9,48 @@ const fillSampleBtn = document.querySelector("#fillSample");
 
 const sample = `# 美股每日股票分析
 
-> 时间基准：美东收盘。仅作交易研究，不构成投资建议。
+市场情绪仍在轮动，企业软件与数据平台、网络安全方向相对占优，尾盘结构暂未出现明显失衡。
 
-## 核心结论
-- 市场主线：
-- 风险偏好：
-- 仓位倾向：
+## 市场概况
+- M7 平均：
+- 宽度：
+- 波动/恐慌：
+- 大盘：
 
-## 宏观与相关性
+结论：
+
+## 板块排名 YYYY-MM-DD
+
+### Top 5 领涨板块
+| 板块 | 涨跌幅 | 宽度 | 标差 | 说明 |
+| --- | ---: | ---: | ---: | --- |
+| 企业软件与数据平台 |  |  |  |  |
+| 网络安全 |  |  |  |  |
+
+### Bottom 5 表现较弱板块
+| 板块 | 涨跌幅 | 宽度 | 标差 | 说明 |
+| --- | ---: | ---: | ---: | --- |
+| 半导体：计算芯片与设计 |  |  |  |  |
+| 半导体：设备与EDA |  |  |  |  |
+
+## Top 10 Gainers YYYY-MM-DD
+| Ticker | Price | Change | Sector |
+| --- | --- | ---: | --- |
+
+## Top 10 Losers YYYY-MM-DD
+| Ticker | Price | Change | Sector |
+| --- | --- | ---: | --- |
+
+## 宏观与风险过滤器
 - DXY：
 - 10 年期名义利率：
 - 10 年期实际利率/TIPS：
 - VIX + COR1M：
 
 ## 观察计划
-1. QQQ / SOXX：
-2. SPY / IWM：
-3. DXY / real yield：
-4. VIX / COR1M：
+1. 领涨板块是否延续扩散。
+2. 半导体链是否止跌或继续拖累 QQQ。
+3. DXY、实际利率、VIX/COR1M 是否确认或否定风险偏好修复。
 
 ## Sources
 - 

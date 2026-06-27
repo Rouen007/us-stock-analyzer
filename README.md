@@ -7,6 +7,7 @@
 - 只整理 Codex 与 Claude 两套使用入口。
 - 可选支持本地 Windows 定时任务，以及 Discord、Slack、邮件推送。
 - 输出重点放在交易研究、盘前/盘后复盘、观察清单、催化剂、技术位和风险控制。
+- 日报支持类似“市场概况 + 板块排名 + Top 10 Gainers/Losers”的板块轮动结构。
 - 市场复盘会关注 DXY、10 年期实际利率/TIPS、通胀预期、VIX、COR1M 等宏观和相关性指标。
 
 ## 文件结构
@@ -24,6 +25,7 @@ us-stock-analyzer/
 │   └── run-and-notify.ps1
 └── references/
     ├── automation-and-delivery.md
+    ├── sector-rotation-report.md
     └── us-market-checklist.md
 ```
 
