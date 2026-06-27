@@ -57,20 +57,24 @@ For multiple tickers, use a compact table:
 
 For a US market review, cover:
 
-- Index posture: SPY, QQQ, IWM, DIA.
-- Breadth and leadership: sectors, mega-cap concentration, risk-on/risk-off tone, VIX, and COR1M/1-month implied correlation.
+- Market snapshot: S&P 500, Nasdaq, Dow, Russell 2000 with exact level, daily change, and weekly change. Always label "日" vs "周" explicitly.
+- Core thesis: 2-3 sentences connecting index action to macro variables (rates, dollar, correlation, oil). Not just "tech is down".
+- Macro overlay (all with exact values): DXY level and daily change, 10-year nominal yield, 2-year nominal yield, 10-year real yield/TIPS, breakeven inflation when relevant, VIX, COR1M/1-month implied correlation, oil (Brent or WTI).
+- Breadth and structure: what is leading vs dragging, advance/decline, whether pressure is broad or concentrated in mega-cap weights.
 - Sector rotation: top/bottom sector ranking, breadth, standard deviation/dispersion, leading and dragging tickers, and whether strength is broadening or concentrated.
-- Movers: top gainers and losers with ticker, price change, percent move, and sector bucket when the user provides or requests a stock universe.
-- Macro drivers: DXY/US dollar, 2-year and 10-year nominal yields, 10-year real yield/TIPS, breakeven inflation, oil, Fed expectations, and major data.
+- Top 10 gainers/losers: only include with verified data (API, screener, or confirmed source). Use exact daily percent change. Never fabricate entries or mix different dates. If data is unavailable, state "数据未获取" instead of guessing.
+- Watch plan for next session: key levels, macro filter signals, style/factor rotation signals, confirm/invalidate conditions.
 - Event calendar: earnings, CPI/PCE/jobs/FOMC, large options expiry when relevant.
-- Trading posture: aggressive, selective, defensive, or wait-and-see.
 
 When the user wants a daily stock analysis, sector ranking, market breadth, or movers board, read [sector-rotation-report.md](references/sector-rotation-report.md).
 
 ## Data Rules
 
 - Prefer live verification for prices, earnings dates, news, and market-moving claims.
-- If live data is unavailable, say so clearly and base the answer only on provided data or stable reasoning.
+- If live data is unavailable, say so clearly and base the answer only on provided data or stable reasoning. Never use vague terms like "+大幅", "-显著" as substitutes for missing numbers.
+- Always explicitly label daily vs weekly changes. Every number must include its time frame (日/周/月).
+- Do not mix data from different dates into a single table or list. If a value is from a different session, label the date.
+- Top 10 Gainers/Losers require verified source data. If no reliable source is available, omit the section and state "数据未获取" rather than guessing.
 - Use Eastern Time for US market timing unless the user requests another timezone.
 - Mention whether the market is pre-market, regular session, after-hours, weekend, or holiday when timing matters.
 
