@@ -28,7 +28,9 @@ us-stock-analyzer/
 │   └── discord-send-via-chrome.js    # Discord Chrome CDP 发送（跨平台）
 └── references/
     ├── automation-and-delivery.md
+    ├── liquidity-fragility-monitor.md   # 流动性 + 脆弱性 + 收益率曲线监控框架
     ├── sector-rotation-report.md
+    ├── sector-rotation-v24.md           # 科技板块轮动 V2.4（13 主题 + 4 扩散线）
     └── us-market-checklist.md
 ```
 

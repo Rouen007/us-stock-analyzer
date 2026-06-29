@@ -59,7 +59,7 @@ For a US market review, cover:
 
 - Market snapshot: S&P 500, Nasdaq, Dow, Russell 2000 with exact level, daily change, and weekly change. Always label "日" vs "周" explicitly.
 - Core thesis: 2-3 sentences connecting index action to macro variables (rates, dollar, correlation, oil). Not just "tech is down".
-- Macro overlay (all with exact values): DXY level and daily change, 10-year nominal yield, 2-year nominal yield, 10-year real yield/TIPS, breakeven inflation when relevant, VIX, COR1M/1-month implied correlation, oil (Brent or WTI).
+- Macro overlay (all with exact values): DXY level and daily change, 10-year nominal yield, 2-year nominal yield, 10-year real yield/TIPS, breakeven inflation when relevant, VIX, COR1M/1-month implied correlation, oil (Brent or WTI), **MOVE index (debt-market vol)**, **10Y-3M and 10Y-2Y curve spreads**, **HYG / LQD / TLT for credit and rate posture**, **USDJPY / USDKRW / USDCNH for offshore-dollar drain**. When writing this section, run the fragility monitor first (see liquidity-fragility-monitor.md) and quote its Fragility Score and Main Weak Link as a one-line summary.
 - Breadth and structure: what is leading vs dragging, advance/decline, whether pressure is broad or concentrated in mega-cap weights.
 - Sector rotation: top/bottom sector ranking, breadth, standard deviation/dispersion, leading and dragging tickers, and whether strength is broadening or concentrated.
 - Top 10 gainers/losers: use the previous trading day's verified close data (API, screener, or confirmed source). Use exact daily percent change. Never fabricate entries or mix different dates. If data is unavailable for a specific ticker, omit that entry rather than guessing. The report always covers the most recent completed trading session.
@@ -67,6 +67,11 @@ For a US market review, cover:
 - Event calendar: earnings, CPI/PCE/jobs/FOMC, large options expiry when relevant.
 
 When the user wants a daily stock analysis, sector ranking, market breadth, or movers board, read [sector-rotation-report.md](references/sector-rotation-report.md).
+
+When the user wants:
+- A market review, daily macro state, or "今天能不能加仓 / today's posture" — read [liquidity-fragility-monitor.md](references/liquidity-fragility-monitor.md). Run the fragility monitor script (e.g. `fragility_monitor.py` from the `setup-scan` skill) FIRST to get the numbers, then cite Fragility Score, Main Weak Link, Bounce Quality, and yield-curve stage in the macro section. Do not estimate scores by hand.
+- Tech / AI sector rotation with sub-chain precision (Memory / Optical / Networking / Power-Cooling / AI App Catch-up) — read [sector-rotation-v24.md](references/sector-rotation-v24.md). Use the 13-theme + 4-diffusion-line framework and attribution codes instead of generic "AI is hot / cold" labels.
+- A single-stock thesis on any AI / semi / hyperscaler / memory / WFE / optical / power-cooling name — read both above. Place the stock in its "Second Treasury" role (upstream / tax collector / hedge / drained) before discussing levels or scenarios.
 
 ## Data Rules
 
