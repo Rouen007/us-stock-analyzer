@@ -99,14 +99,10 @@ ${calendar_entries}  </array>
 </plist>
 PLIST
 
-# unload old one if exists, then load
-launchctl bootout "gui/$(id -u)/${label}" 2>/dev/null || true
-launchctl bootstrap "gui/$(id -u)" "$plist_path"
-
-echo "✅ launchd job installed: ${label}"
-echo "   Plist:  ${plist_path}"
-echo "   Logs:   ${log_dir}/"
+echo "✅ Plist generated: ${plist_path}"
+echo "   Logs:    ${log_dir}/"
 echo "   Schedule: ${run_time} on ${days_json}"
 echo ""
+echo "To load:       launchctl bootstrap gui/$(id -u) '${plist_path}'"
 echo "To test now:   bash '${run_script}' '${CONFIG}'"
-echo "To uninstall:  launchctl bootout 'gui/$(id -u)/${label}'"
+echo "To unload:     launchctl bootout gui/$(id -u)/${label}"
