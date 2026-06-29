@@ -52,21 +52,28 @@ function readBody(req) {
 
 function runNotify(message) {
   return new Promise((resolve) => {
-    const scriptPath = path.join(rootDir, "scripts", "run-and-notify.ps1");
     const configPath = path.join(rootDir, "config.local.json");
-    const args = [
-      "-NoProfile",
-      "-ExecutionPolicy",
-      "Bypass",
-      "-File",
-      scriptPath,
-      "-Config",
-      configPath,
-      "-Message",
-      message,
-    ];
+    const isWin = process.platform === "win32";
 
-    const child = spawn("powershell.exe", args, {
+    let cmd, args;
+    if (isWin) {
+      cmd = "powershell.exe";
+      args = [
+        "-NoProfile", "-ExecutionPolicy", "Bypass",
+        "-File", path.join(rootDir, "scripts", "run-and-notify.ps1"),
+        "-Config", configPath,
+        "-Message", message,
+      ];
+    } else {
+      cmd = "bash";
+      args = [
+        path.join(rootDir, "scripts", "run-and-notify.sh"),
+        configPath,
+        message,
+      ];
+    }
+
+    const child = spawn(cmd, args, {
       cwd: rootDir,
       windowsHide: true,
     });

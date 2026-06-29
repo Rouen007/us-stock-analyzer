@@ -1,17 +1,15 @@
 {
+  "_comment_schedule": "Days: Monday-Sunday. Time: 24h HH:mm.",
   "schedule": {
     "taskName": "US Stock Analyzer Daily Review",
     "time": "16:15",
     "daysOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
   },
+  "_comment_runner": "command + arguments to produce the report. workingDirectory defaults to cwd.",
   "runner": {
-    "workingDirectory": "E:\\AIRelated\\us-stock-analyzer",
-    "command": "powershell",
-    "arguments": [
-      "-NoProfile",
-      "-Command",
-      "Write-Output 'Replace runner.command and runner.arguments with your Codex, Claude, or market analysis command.'"
-    ]
+    "workingDirectory": "",
+    "command": "",
+    "arguments": []
   },
   "reportFooter": "from [Rouen007/us-stock-analyzer](https://github.com/Rouen007/us-stock-analyzer)",
   "delivery": {

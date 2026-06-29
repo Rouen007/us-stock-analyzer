@@ -1,13 +1,13 @@
-﻿# US Stock Analyzer
+# US Stock Analyzer
 
 一个只关注美股的股票分析 skill，面向 Codex 和 Claude 使用。
 
 - 只支持美股、美国 ETF、ADR 和主要美股指数代理。
 - 暂不考虑 A 股、港股、加密货币、外汇、期货和其他市场。
 - 只整理 Codex 与 Claude 两套使用入口。
-- 可选支持本地 Windows 定时任务，以及 Discord、Slack、邮件推送。
+- 可选支持本地定时任务（Windows / macOS），以及 Discord、Slack、邮件推送。
 - 输出重点放在交易研究、盘前/盘后复盘、观察清单、催化剂、技术位和风险控制。
-- 日报支持类似“市场概况 + 板块排名 + Top 10 Gainers/Losers”的板块轮动结构。
+- 日报支持类似"市场概况 + 板块排名 + Top 10 Gainers/Losers"的板块轮动结构。
 - 市场复盘会关注 DXY、10 年期实际利率/TIPS、通胀预期、VIX、COR1M 等宏观和相关性指标。
 
 ## 文件结构
@@ -20,9 +20,12 @@ us-stock-analyzer/
 ├── agents/
 │   └── openai.yaml       # Codex UI 展示信息
 ├── scripts/
-│   ├── config.example.json
-│   ├── install-windows-scheduled-task.ps1
-│   └── run-and-notify.ps1
+│   ├── config.example.json           # 配置模板（跨平台）
+│   ├── run-and-notify.ps1            # Windows: 运行并推送
+│   ├── run-and-notify.sh             # macOS/Linux: 运行并推送
+│   ├── install-windows-scheduled-task.ps1  # Windows: 安装定时任务
+│   ├── install-macos-launchd.sh            # macOS: 安装 launchd 定时任务
+│   └── discord-send-via-chrome.js    # Discord Chrome CDP 发送（跨平台）
 └── references/
     ├── automation-and-delivery.md
     ├── sector-rotation-report.md
@@ -33,8 +36,16 @@ us-stock-analyzer/
 
 把整个目录复制到 Codex skills 目录：
 
+**Windows:**
+
 ```powershell
 Copy-Item -Recurse E:\AIRelated\us-stock-analyzer C:\Users\Administrator\.codex\skills\us-stock-analyzer
+```
+
+**macOS:**
+
+```bash
+cp -r ~/path/to/us-stock-analyzer ~/.codex/skills/us-stock-analyzer
 ```
 
 重启 Codex 后，可以这样调用：
@@ -67,13 +78,23 @@ Copy-Item -Recurse E:\AIRelated\us-stock-analyzer C:\Users\Administrator\.codex\
 
 ## 本地定时任务与推送
 
-复制配置模板：
+### 1. 复制配置模板
+
+**Windows:**
 
 ```powershell
-Copy-Item E:\AIRelated\us-stock-analyzer\scripts\config.example.json E:\AIRelated\us-stock-analyzer\config.local.json
+Copy-Item scripts\config.example.json config.local.json
+```
+
+**macOS / Linux:**
+
+```bash
+cp scripts/config.example.json config.local.json
 ```
 
 然后在 `config.local.json` 里设置本地运行命令，例如 Codex CLI、Claude CLI、你自己的行情脚本，或任何能输出 Markdown 文本的命令。
+
+### 2. 配置推送渠道
 
 Discord 有两种方式：
 
@@ -82,24 +103,57 @@ Discord 有两种方式：
 
 推送密钥建议放到环境变量：
 
+**Windows:**
+
 ```powershell
 [Environment]::SetEnvironmentVariable("US_STOCK_DISCORD_WEBHOOK_URL", "你的 Discord webhook", "User")
 [Environment]::SetEnvironmentVariable("US_STOCK_SLACK_WEBHOOK_URL", "你的 Slack webhook", "User")
 ```
 
-测试运行：
+**macOS / Linux** (加到 `~/.zshrc` 或 `~/.bashrc`)：
 
-```powershell
-powershell -ExecutionPolicy Bypass -File E:\AIRelated\us-stock-analyzer\scripts\run-and-notify.ps1 -Config E:\AIRelated\us-stock-analyzer\config.local.json
+```bash
+export US_STOCK_DISCORD_WEBHOOK_URL="你的 Discord webhook"
+export US_STOCK_SLACK_WEBHOOK_URL="你的 Slack webhook"
 ```
 
-安装 Windows 定时任务：
+### 3. 测试运行
+
+**Windows:**
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File E:\AIRelated\us-stock-analyzer\scripts\install-windows-scheduled-task.ps1 -Config E:\AIRelated\us-stock-analyzer\config.local.json
+powershell -ExecutionPolicy Bypass -File scripts\run-and-notify.ps1 -Config config.local.json
 ```
 
-`config.local.json`、webhook 和邮箱密码不要提交到 Git。
+**macOS / Linux:**
+
+```bash
+bash scripts/run-and-notify.sh config.local.json
+```
+
+### 4. 安装定时任务
+
+**Windows** (Task Scheduler)：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\install-windows-scheduled-task.ps1 -Config config.local.json
+```
+
+**macOS** (launchd)：
+
+```bash
+bash scripts/install-macos-launchd.sh config.local.json
+```
+
+安装后会输出 plist 路径和日志位置。卸载：
+
+```bash
+launchctl bootout "gui/$(id -u)/com.us-stock-analyzer.us-stock-analyzer-daily-review"
+```
+
+### 安全提示
+
+`config.local.json`、webhook 和邮箱密码**不要提交到 Git**。
 
 `reportFooter` 会自动追加到每次推送的报告末尾，默认是本仓库地址：
 
@@ -130,8 +184,8 @@ https://discord.com/channels/<guild_id>/<channel_id>
 
 启动：
 
-```powershell
-cd E:\AIRelated\us-stock-analyzer
+```bash
+cd us-stock-analyzer
 npm start
 ```
 
@@ -145,7 +199,7 @@ http://127.0.0.1:8787
 
 - 编辑日报内容
 - 预览 Markdown 文本
-- 点击按钮调用 `scripts/run-and-notify.ps1`
+- 点击按钮调用 `run-and-notify` 脚本
 - 使用当前 `config.local.json` 推送到已配置的 Discord / Slack / 邮件目标
 
 ## 参考来源

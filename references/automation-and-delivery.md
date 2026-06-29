@@ -2,13 +2,17 @@
 
 Use this reference when the user wants local scheduled US stock reports or delivery to Discord, Slack, or email.
 
-## Supported Targets
+## Supported Platforms
 
-- Local Windows scheduled task.
+- **Windows**: PowerShell scripts + Task Scheduler.
+- **macOS**: Bash scripts + launchd.
+
+## Supported Delivery Targets
+
 - Discord webhook.
 - Discord channel through an already logged-in Chrome session.
 - Slack incoming webhook.
-- Email through SMTP settings available to Windows PowerShell.
+- Email through SMTP (uses Python `smtplib` on macOS, PowerShell `Send-MailMessage` on Windows).
 
 ## Design Rules
 
@@ -23,8 +27,12 @@ Use this reference when the user wants local scheduled US stock reports or deliv
 1. Copy `scripts/config.example.json` to `config.local.json`.
 2. Set `runner.command` and `runner.arguments` to the command that generates the report.
 3. Enable one or more delivery targets.
-4. Test once with `scripts/run-and-notify.ps1`.
-5. Register the schedule with `scripts/install-windows-scheduled-task.ps1`.
+4. Test once:
+   - Windows: `powershell -ExecutionPolicy Bypass -File scripts\run-and-notify.ps1 -Config config.local.json`
+   - macOS: `bash scripts/run-and-notify.sh config.local.json`
+5. Register the schedule:
+   - Windows: `powershell -ExecutionPolicy Bypass -File scripts\install-windows-scheduled-task.ps1 -Config config.local.json`
+   - macOS: `bash scripts/install-macos-launchd.sh config.local.json`
 
 ## Schedule Ideas
 
