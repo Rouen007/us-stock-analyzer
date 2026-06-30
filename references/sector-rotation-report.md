@@ -17,15 +17,20 @@ Use this reference when producing a daily stock analysis with market breadth, se
    - Nasdaq Composite: level, daily change, weekly change.
    - Dow: level, daily change, weekly change.
    - Russell 2000: level, daily change, weekly change.
-3. Macro and correlation overlay (all with exact values):
+3. Macro and correlation overlay (all with exact values). Read [macro-data-sources.md](macro-data-sources.md) for verified fetch URLs:
    - DXY: level and daily change.
    - 10-year nominal yield.
-   - 2-year nominal yield.
+   - 2-year nominal yield (or 13W T-bill as short-end proxy if 2Y unavailable).
+   - 10Y-3M and 10Y-2Y curve spreads (calculated from yields).
    - 10-year real yield / TIPS.
    - Breakeven inflation (10Y nominal minus TIPS) when relevant.
-   - VIX: level.
-   - COR1M / 1-month implied correlation: level or direction.
-   - Oil (Brent or WTI): level and context.
+   - VIX: level and daily change.
+   - COR1M / 1-month implied correlation: level or direction. If unavailable, note "数据未获取".
+   - MOVE index (debt-market vol): level and daily change.
+   - Oil (Brent or WTI): level and daily change.
+   - HYG / LQD / TLT: price and daily change for credit/rate posture.
+   - USDJPY / USDKRW / USDCNH: level for offshore-dollar drain.
+   - If any field cannot be fetched, explicitly write "数据未获取" — do not silently omit.
 4. Market structure / breadth:
    - What is leading vs dragging.
    - Breadth: advance/decline ratio or similar (e.g. "S&P 500 内部上涨多于下跌").
@@ -70,11 +75,13 @@ Use this reference when producing a daily stock analysis with market breadth, se
 
 ## 宏观与相关性主线
 - DXY：<level>，日变动 <±X.X%>。解读。
-- 10 年期美债：<yield%>。
-- 2 年期美债：<yield%>。
-- 10 年期实际利率/TIPS：<yield%>。解读。
-- VIX：<level>。COR1M：<level or direction>。解读。
-- 油价：Brent <level> / WTI <level>。解读。
+- 10Y yield：<yield%>。2Y yield：<yield%>（或 13W T-bill <yield%>）。
+- 曲线：10Y-2Y = <spread bps>，10Y-3M = <spread bps>。
+- 10Y 实际利率/TIPS：<yield%>。解读。
+- VIX：<level>，日变动 <±X.X%>。COR1M：<level or 数据未获取>。MOVE：<level>。解读。
+- 油价：WTI $<level> (日±X.X%) / Brent $<level>。
+- 信用：HYG $<level> (日±X.X%)，LQD $<level> (日±X.X%)，TLT $<level> (日±X.X%)。
+- 外汇：USDJPY <level>，USDKRW <level>，USDCNH <level>。
 
 ## 盘面结构
 - 领跌：

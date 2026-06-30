@@ -16,8 +16,9 @@ Use this skill to produce practical US equity research for Codex users. Focus on
 
 ## Workflow
 
+0. **Date & session detection (mandatory first step)**: Before fetching ANY data, determine today's date, day of week, and US market session (pre-market / regular / after-hours / weekend / holiday). Identify which trading day's close data to report. If market is closed, report the last completed session. State this explicitly at the top of the report: `时间基准：美东 YYYY-MM-DD 周X HH:MM (盘前/收盘/盘后)`. Never assume the date — always verify.
 1. Clarify the task only when the user's intent is materially ambiguous: single-stock analysis, multi-stock comparison, watchlist triage, earnings/news recap, market review, or trade plan.
-2. Gather current market data when freshness matters: latest price, session move, volume, market cap, earnings date, news, analyst/revision context, and macro or sector backdrop. Use available browsing, finance, broker exports, or user-provided data.
+2. Gather current market data when freshness matters: latest price, session move, volume, market cap, earnings date, news, analyst/revision context, and macro or sector backdrop. Use available browsing, finance, broker exports, or user-provided data. For market reviews, read [macro-data-sources.md](references/macro-data-sources.md) for verified data source URLs and the parallel fetch strategy.
 3. Separate facts from inference. Cite live sources when using web data.
 4. Build a concise decision framework:
    - Trend: daily/weekly direction, relative strength, moving-average posture, and key support/resistance.
@@ -82,6 +83,7 @@ When the user wants:
 - Top 10 Gainers/Losers require verified source data. If no reliable source is available, omit the section and state "数据未获取" rather than guessing.
 - Use Eastern Time for US market timing unless the user requests another timezone.
 - Mention whether the market is pre-market, regular session, after-hours, weekend, or holiday when timing matters.
+- **Data completeness check**: After fetching, verify ALL macro overlay fields are present. If a field cannot be fetched (COR1M, 2Y yield, etc.), explicitly write "数据未获取" in the report — do not silently omit. See [macro-data-sources.md](references/macro-data-sources.md) for the full checklist.
 
 ## Automation And Delivery
 

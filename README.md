@@ -29,6 +29,7 @@ us-stock-analyzer/
 └── references/
     ├── automation-and-delivery.md
     ├── liquidity-fragility-monitor.md   # 流动性 + 脆弱性 + 收益率曲线监控框架
+    ├── macro-data-sources.md            # 宏观数据源 URL 速查 + 并行抓取策略
     ├── sector-rotation-report.md
     ├── sector-rotation-v24.md           # 科技板块轮动 V2.4（13 主题 + 4 扩散线）
     └── us-market-checklist.md
