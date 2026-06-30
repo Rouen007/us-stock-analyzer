@@ -25,7 +25,8 @@ Use this reference when producing a daily stock analysis with market breadth, se
    - 10-year real yield / TIPS.
    - Breakeven inflation (10Y nominal minus TIPS) when relevant.
    - VIX: level and daily change.
-   - COR1M / 1-month implied correlation: level or direction. If unavailable, note "数据未获取".
+   - COR1M / 1-month implied correlation: level and daily change.
+   - COR3M / 3-month implied correlation: level and daily change.
    - MOVE index (debt-market vol): level and daily change.
    - Oil (Brent or WTI): level and daily change.
    - HYG / LQD / TLT: price and daily change for credit/rate posture.
@@ -81,7 +82,7 @@ Use this reference when producing a daily stock analysis with market breadth, se
 - 10Y yield：<yield%>。2Y yield：<yield%>（或 13W T-bill <yield%>）。
 - 曲线：10Y-2Y = <spread bps>，10Y-3M = <spread bps>。
 - 10Y 实际利率/TIPS：<yield%>。解读。
-- VIX：<level>，日变动 <±X.X%>。COR1M：<level or 数据未获取>。MOVE：<level>。解读。
+- VIX：<level>，日变动 <±X.X%>。COR1M：<level> (日±X.X%)。COR3M：<level> (日±X.X%)。MOVE：<level>。解读。
 - 油价：WTI $<level> (日±X.X%) / Brent $<level>。
 - 信用：HYG $<level> (日±X.X%)，LQD $<level> (日±X.X%)，TLT $<level> (日±X.X%)。
 - 外汇：USDJPY <level>，USDKRW <level>，USDCNH <level>。

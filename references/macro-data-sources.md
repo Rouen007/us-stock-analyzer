@@ -39,7 +39,8 @@ Correct calculation:
 |------------|-----|-------|
 | VIX | `https://finance.yahoo.com/quote/%5EVIX/` | Level + daily change |
 | MOVE index | `https://finance.yahoo.com/quote/%5EMOVE/` | Debt-market vol. Level + change |
-| COR1M | Hard to fetch live. Use **Backup**: check `https://www.cboe.com/us/equities/strategy_benchmark/` or note "COR1M 数据未获取" | 1-month implied correlation |
+| COR1M | `https://finance.yahoo.com/quote/%5ECOR1M/` | 1-month implied correlation |
+| COR3M | `https://finance.yahoo.com/quote/%5ECOR3M/` | 3-month implied correlation |
 
 ## Rates & Yield Curve
 
@@ -114,17 +115,18 @@ Fetch all 11 in parallel:
 
 After fetching, verify ALL of the following are present. Mark missing items as "数据未获取":
 
-- [ ] SPY / QQQ / IWM / DIA — price + daily % + weekly %
-- [ ] S&P 500 / Nasdaq Composite — level + daily % + weekly %
+- [ ] SPY / QQQ / IWM / DIA — price + daily %
+- [ ] S&P 500 / Nasdaq Composite — level + daily %
 - [ ] VIX — level + daily change
 - [ ] DXY — level + daily change
 - [ ] 10Y yield — level
 - [ ] 2Y yield or 13W T-bill — level (for curve spread)
-- [ ] TIPS / real yield — level (if available)
-- [ ] MOVE index — level (if available)
-- [ ] COR1M — level (if available, otherwise note "数据未获取")
+- [ ] TIPS / real yield — TIP ETF or FRED DFII10
+- [ ] MOVE index — level
+- [ ] COR1M — level (Yahoo: `^COR1M`)
+- [ ] COR3M — level (Yahoo: `^COR3M`)
 - [ ] Oil (WTI / Brent) — level
-- [ ] USDJPY — level
+- [ ] USDJPY / USDKRW / USDCNH — level
 - [ ] HYG / LQD / TLT — price + daily change
 - [ ] 11 sector ETFs — price + daily %
 - [ ] Top 10 gainers — ticker + % change
@@ -134,7 +136,7 @@ After fetching, verify ALL of the following are present. Mark missing items as "
 
 To minimize latency, fetch data in parallel batches:
 
-**Batch 1** (indices + macro): SPY, QQQ, IWM, DIA, ^GSPC, ^IXIC, ^VIX, ^TNX, ^IRX, ^MOVE, DX-Y.NYB
+**Batch 1** (indices + macro): SPY, QQQ, IWM, DIA, ^GSPC, ^IXIC, ^VIX, ^TNX, ^IRX, ^MOVE, ^COR1M, ^COR3M, DX-Y.NYB
 **Batch 2** (credit + FX): HYG, LQD, TLT, JPY=X, CNH=X, CL=F, BZ=F
 **Batch 3** (sectors): XLK, XLY, XLC, XLI, XLF, XLV, XLP, XLU, XLE, XLRE, XLB
 **Batch 4** (movers): TradingView gainers, TradingView losers
