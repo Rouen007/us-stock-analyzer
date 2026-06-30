@@ -68,6 +68,9 @@ Use this reference when producing a daily stock analysis with market breadth, se
 2-3 句话，说明今天的结构性驱动（不只是"科技跌了"），把指数动作和宏观变量串联起来。
 
 ## 市场快照
+
+> 周涨跌 = 本周一开盘到今天的累计涨跌。周一 = 日涨跌，周二起需计算累计值。不要用 Yahoo 5D 数据。
+
 - S&P 500：<level>，日涨跌 <±X.X%>；周涨跌 <±X.X%>。
 - Nasdaq Composite：<level>，日涨跌 <±X.X%>；周涨跌 <±X.X%>。
 - Dow：<level>，日涨跌 <±X.X%>；周涨跌 <±X.X%>。

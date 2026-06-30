@@ -85,6 +85,15 @@ When the user wants:
 - Mention whether the market is pre-market, regular session, after-hours, weekend, or holiday when timing matters.
 - **Data completeness check**: After fetching, verify ALL macro overlay fields are present. If a field cannot be fetched (COR1M, 2Y yield, etc.), explicitly write "数据未获取" in the report — do not silently omit. See [macro-data-sources.md](references/macro-data-sources.md) for the full checklist.
 
+### Weekly Change Rules
+
+"周涨跌" means the cumulative return from **this week's Monday open** to the current session's close. It is NOT the same as Yahoo Finance's "5D" trailing performance.
+
+- **Monday**: 周涨跌 = 日涨跌 (only 1 day in the week so far). Do NOT show a separate "周涨跌" column — it would be redundant. Instead, note "本周第 1 个交易日" in the table footnote.
+- **Tuesday–Friday**: 周涨跌 = cumulative from Monday open to today's close. Calculate as: `(today's close / Monday's open - 1) * 100%`. If Monday's open is unavailable, use Monday's close as the week-start reference.
+- **Never** use Yahoo Finance's 5D performance as "周涨跌". The 5D metric is a trailing 5-trading-day return (e.g., on Monday it covers last Wed→this Mon), which is a completely different timeframe.
+- If you cannot calculate the true weekly cumulative change, omit the "周涨跌" column and state the day-of-week position instead (e.g. "本周第 3 个交易日").
+
 ## Automation And Delivery
 
 When the user asks for local scheduled reports or Discord/Slack/email delivery, read [automation-and-delivery.md](references/automation-and-delivery.md).

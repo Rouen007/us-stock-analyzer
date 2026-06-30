@@ -19,10 +19,19 @@ Before fetching ANY data, determine:
 | QQQ | `https://finance.yahoo.com/quote/QQQ/` | Nasdaq 100 ETF |
 | IWM | `https://finance.yahoo.com/quote/IWM/` | Russell 2000 ETF |
 | DIA | `https://finance.yahoo.com/quote/DIA/` | Dow ETF |
-| S&P 500 index | `https://finance.yahoo.com/quote/%5EGSPC/` | 5D change for weekly |
-| Nasdaq Composite | `https://finance.yahoo.com/quote/%5EIXIC/` | 5D change for weekly |
+| S&P 500 index | `https://finance.yahoo.com/quote/%5EGSPC/` | For level |
+| Nasdaq Composite | `https://finance.yahoo.com/quote/%5EIXIC/` | For level |
 
-Extract: **price**, **daily change ($ and %)**, **previous close**. For weekly change, use the **5D performance** shown on the chart.
+Extract: **price**, **daily change ($ and %)**, **previous close**.
+
+### Weekly Change (周涨跌)
+
+**Do NOT use Yahoo Finance's 5D performance as "周涨跌".** The 5D metric is a trailing 5-trading-day return, not this week's cumulative return.
+
+Correct calculation:
+- **Monday**: 周涨跌 = 日涨跌 (this week only has 1 day so far). Note "本周第 1 个交易日" in report.
+- **Tuesday–Friday**: 周涨跌 = `(today's close / Monday's open - 1) * 100%`. Use Monday's close as fallback if open is unavailable.
+- If true weekly data cannot be calculated, omit the 周涨跌 column and state the day-of-week position.
 
 ## Volatility & Correlation
 
