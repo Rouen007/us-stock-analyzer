@@ -6,10 +6,37 @@ Use this reference to fetch each required macro data point. Every URL below has 
 
 Before fetching ANY data, determine:
 
-1. **Today's date and day of week** — use `date` command or system clock.
+1. **Today's date and day of week** — use `date` command or system clock. Explicitly compute the day of week; do NOT guess.
 2. **Market session**: Is US market open, pre-market, after-hours, weekend, or holiday?
 3. **Which trading day's close** to report: If market is closed (weekend/holiday), report the last completed session. If pre-market, report previous close + current pre-market. If regular/after-hours, report today's close.
 4. **State this explicitly** at the top of the report: `时间基准：美东 YYYY-MM-DD 周X HH:MM (盘前/收盘/盘后)`.
+5. **Trading day count**: "本周第 N 个交易日" starts from Monday = Day 1. Skip weekends and market holidays.
+
+### US Market Holidays (fixed-date)
+
+| Holiday | Date | Rule |
+|---------|------|------|
+| New Year's Day | Jan 1 | If Sat → Fri observed. If Sun → Mon observed. |
+| MLK Day | 3rd Monday of Jan | Always Monday |
+| Presidents' Day | 3rd Monday of Feb | Always Monday |
+| Good Friday | Varies | NYSE closed |
+| Memorial Day | Last Monday of May | Always Monday |
+| **Independence Day** | **Jul 4** | **If Sat → Fri Jul 3 full close. If Sun → Mon Jul 6 full close.** |
+| Labor Day | 1st Monday of Sep | Always Monday |
+| Thanksgiving | 4th Thursday of Nov | + early close Fri |
+| Christmas | Dec 25 | If Sat → Fri observed. If Sun → Mon observed. |
+
+### Key Economic Release Times (ET)
+
+| Event | Time | Notes |
+|-------|------|-------|
+| Nonfarm Payrolls | **8:30 AM** | First Friday of month. If Fri is holiday → Thu before. |
+| CPI | 8:30 AM | Usually mid-month |
+| PCE | 8:30 AM | Last trading day of month |
+| FOMC Decision | 2:00 PM | 8 meetings/year |
+| Initial Jobless Claims | 8:30 AM | Every Thursday |
+| ISM Manufacturing | 10:00 AM | First business day of month |
+| ISM Services | 10:00 AM | Third business day of month |
 
 ## Index & ETF Prices
 

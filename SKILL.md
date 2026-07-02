@@ -16,7 +16,15 @@ Use this skill to produce practical US equity research for Codex users. Focus on
 
 ## Workflow
 
-0. **Date & session detection (mandatory first step)**: Before fetching ANY data, determine today's date, day of week, and US market session (pre-market / regular / after-hours / weekend / holiday). Identify which trading day's close data to report. If market is closed, report the last completed session. State this explicitly at the top of the report: `时间基准：美东 YYYY-MM-DD 周X HH:MM (盘前/收盘/盘后)`. Never assume the date — always verify.
+0. **Date & session detection (mandatory first step)**: Before fetching ANY data, determine today's date, day of week, and US market session (pre-market / regular / after-hours / weekend / holiday). Identify which trading day's close data to report. If market is closed, report the last completed session. State this explicitly at the top of the report: `时间基准：美东 YYYY-MM-DD 周X HH:MM (盘前/收盘/盘后)`. Never assume the date — always verify with `date` command or system clock.
+
+   **Day-of-week verification**: After determining the date, explicitly compute the day of week (周一/周二/...). Do NOT guess — use a calendar or `date +%A`. Common mistake: confusing Tuesday with Wednesday when dates shift.
+
+   **Trading day counting**: "本周第 N 个交易日" counts from Monday of the current week. Monday = Day 1, Tuesday = Day 2, etc. Skip weekends and market holidays. If today is Wednesday and Monday was a holiday, today is Day 2, not Day 3.
+
+   **Holiday rules**: When July 4 falls on Saturday → Friday July 3 is observed (full day close). When July 4 falls on Sunday → Monday July 6 is observed. Check the NYSE holiday calendar for exact dates. Do not assume "early close" vs "full close" without verifying.
+
+   **NFP release time**: Nonfarm payrolls is always released at **8:30 AM ET** on the first Friday of the month (or Thursday if Friday is a holiday). Do not confuse with other times.
 1. Clarify the task only when the user's intent is materially ambiguous: single-stock analysis, multi-stock comparison, watchlist triage, earnings/news recap, market review, or trade plan.
 2. Gather current market data when freshness matters: latest price, session move, volume, market cap, earnings date, news, analyst/revision context, and macro or sector backdrop. Use available browsing, finance, broker exports, or user-provided data. For market reviews, read [macro-data-sources.md](references/macro-data-sources.md) for verified data source URLs and the parallel fetch strategy.
 3. Separate facts from inference. Cite live sources when using web data.
